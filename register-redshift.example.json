@@ -1,0 +1,29 @@
+{
+    "name": "redshift-sink",
+    "config": {
+        "confluent.topic.bootstrap.servers": "broker:9092",
+        "confluent.topic.replication.factor": "1",
+        "connector.class": "io.confluent.connect.aws.redshift.RedshiftSinkConnector",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable": "true",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "true",
+        "tasks.max": "1",
+        "aws.redshift.domain": "host.docker.internal",
+        "aws.redshift.port": "55091",
+        "aws.redshift.database": "sandbox_REPLACE_WITH_YOUR_REDSHIFT_USER",
+        "aws.redshift.user": "REPLACE_WITH_REDSHIFT_USER",
+        "aws.redshift.password": "REPLACE_WITH_REDSHIFT_PASSWORD",
+        "pk.mode": "record_key",
+        "pk.fields": "id",
+        "auto.create": "true",
+        "delete.enabled": "true",
+        "insert.mode": "insert",
+        "topics.regex": "acme.public.*",
+        "transforms": "unwrap,reroute",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
+        "transforms.reroute.topic.regex": "(.*)public.(.*)",
+        "transforms.reroute.topic.replacement": "public.$2"
+    }
+}

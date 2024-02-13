@@ -1,0 +1,28 @@
+{
+    "name": "postgres-cdc-source",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable": "true",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "true",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "postgres",
+        "plugin.name": "pgoutput",
+        "snapshot.mode": "never",
+        "slot.drop.on.stop": "true",
+        "tombstones.on.delete": "true",
+        "decimal.handling.mode": "double",
+        "cleanup.policy": "compact",
+        "schema.include.list": "public",
+        "table.include.list": "public.test_table",
+        "column.exclude.list": "",
+        "topic.prefix": "acme",
+        "producer.max.request.size": "5000000",
+        "producer.max.partition.fetch.bytes": "5000000"
+    }
+}
