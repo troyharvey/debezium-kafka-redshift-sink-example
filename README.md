@@ -1,5 +1,7 @@
 # Example: Postgres > Debezium > Kafka > Redshift
 
+![](diagram.png)
+
 An example using Confluent Kafka connectors to stream data from a Postgres database to a Redshift database.
 
 [See comments in this PR](https://github.com/troyharvey/debezium-kafka-redshift-sink-example/pull/1) for more notes on this setup.
